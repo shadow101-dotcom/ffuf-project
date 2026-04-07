@@ -1,6 +1,11 @@
 #!/bin/bash
 
-TARGET="http://example.com/page.php"
-WORDLIST="/usr/share/wordlists/params.txt"
+TARGET=$1
+WORDLIST="/usr/share/wordlists/dirb/common.txt"
 
-ffuf -u "$TARGET?FUZZ=test" -w $WORDLIST -mc 200 -o param_results.txt -v
+if [ -z "$TARGET" ]; then
+    echo "Usage: $0 <URL_with_endpoint>"
+    exit 1
+fi
+
+ffuf -u "$TARGET?FUZZ=test" -w "$WORDLIST" -mc 200 -o param_results.txt -v
