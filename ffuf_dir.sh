@@ -1,5 +1,3 @@
-# ffuf-project
-
 #!/bin/bash
 
 TARGET=$1
